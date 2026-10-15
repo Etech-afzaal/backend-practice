@@ -1,0 +1,9 @@
+Concept	Example	Purpose
+Type annotation	            age: number	                Specify a type
+Interface	                interface User	            Define an object structure
+Type alias	                type ID = number	        Name a type
+Union	                    string \| number	        Allow multiple types
+Literal type	            "active" \| "inactive"	    Restrict exact values
+Enum	                    enum Role { Admin }	        Define named constants
+Generic                     Promise<User[]>	            Reuse types safely
+Narrowing	                typeof value === "string"	Refine a union type
