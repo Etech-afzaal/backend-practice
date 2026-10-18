@@ -1,0 +1,51 @@
+### Get all products
+GET http://localhost:3000/products
+
+### Get product by ID
+GET http://localhost:3000/users/2
+
+### Create product
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "price": 150000,
+  "category": "Electronics"
+}
+
+### Update product
+PUT http://localhost:3000/products/1
+Content-Type: application/json
+
+{
+  "name": "Gaming Laptop",
+  "price": 200000,
+  "category": "Electronics"
+}
+
+### Update product price only
+PATCH http://localhost:3000/products/1
+Content-Type: application/json
+
+{
+  "price": 180000
+}
+
+### Delete product
+DELETE http://localhost:3000/products/1
+
+
+### Create user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "email": "asad@gmail.com"
+}
+
+### Protect api key
+GET  http://localhost:3000/protected
+Content-Type: application/json
+x-api-key: secret123

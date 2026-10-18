@@ -1,0 +1,119 @@
+
+@baseUrl = http://localhost:3000
+
+### 1. Check Server
+GET {{baseUrl}}/
+
+### 2. GET - Fetch All Users
+GET {{baseUrl}}/api/users
+
+### 3. GET - Fetch User by ID
+GET {{baseUrl}}/api/users/1
+
+### 4. GET - Filter Admin Users
+GET {{baseUrl}}/api/users?role=admin
+
+### 5. GET - Filter Customer Users
+GET {{baseUrl}}/api/users?role=customer
+
+### 6. POST - Create New User
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Ahmed",
+  "email": "ahmed@example.com",
+  "role": "customer"
+}
+
+### 7. PUT - Replace User (ID 3)
+PUT {{baseUrl}}/api/users/3
+Content-Type: application/json
+
+{
+  "name": "Ahmed Khan",
+  "email": "ahmedkhan@example.com",
+  "role": "admin"
+}
+
+### 8. PATCH - Update User Name Only
+PATCH {{baseUrl}}/api/users/3
+Content-Type: application/json
+
+{
+  "name": "Muhammad Ahmed"
+}
+
+### 9. PATCH - Update User Role Only
+PATCH {{baseUrl}}/api/users/3
+Content-Type: application/json
+
+{
+  "role": "customer"
+}
+
+### 10. DELETE - Delete User
+DELETE {{baseUrl}}/api/users/3
+
+### 11. GET - Verify Deleted User
+GET {{baseUrl}}/api/users/3
+
+
+########################################
+# ERROR HANDLING TESTS
+########################################
+
+### 12. GET - Invalid User ID
+GET {{baseUrl}}/api/users/abc
+
+### 13. GET - User Not Found
+GET {{baseUrl}}/api/users/999
+
+### 14. POST - Missing Name
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "role": "customer"
+}
+
+### 15. POST - Invalid Email
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "email": "invalid-email",
+  "role": "customer"
+}
+
+### 16. POST - Invalid Role
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "email": "test@example.com",
+  "role": "superadmin"
+}
+
+### 17. PATCH - Empty Body
+PATCH {{baseUrl}}/api/users/1
+Content-Type: application/json
+
+{}
+
+### 18. PUT - Missing Required Fields
+PUT {{baseUrl}}/api/users/1
+Content-Type: application/json
+
+{
+  "name": "Ali Updated"
+}
+
+### 19. GET - Invalid Query Parameter
+GET {{baseUrl}}/api/users?role=manager
+
+### 20. GET - Unknown Endpoint
+GET {{baseUrl}}/api/unknown
