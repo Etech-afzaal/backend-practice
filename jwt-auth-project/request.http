@@ -1,0 +1,76 @@
+@baseUrl = http://localhost:3000
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRjNWU1NTRjNGRlNDM3ZDUxMDU1YjciLCJyb2xlIjoiZW1wbG95ZWUiLCJ0b2tlblR5cGUiOiJhY2Nlc3MiLCJpYXQiOjE3OTI4Mjg2NjgsImV4cCI6MTc5MjgyOTU2OCwiYXVkIjoiand0LWF1dGgtY2xpZW50IiwiaXNzIjoiand0LWF1dGgtYXBpIn0.Sz6WU7NmrwStbB9GBrYLnbllvoa6vxDpjK9dO6ppkYc
+
+
+@baseUrl = http://localhost:3000
+
+### Register
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Ali",
+  "email": "ali@gmail.com",
+  "password": "MyStrongPassword123!"
+}
+
+### Login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ali@gmail.com",
+  "password": "MyStrongPassword123!"
+}
+
+### 1. Profile with valid JWT
+GET {{baseUrl}}/api/auth/profile
+Authorization: Bearer {{accessToken}}
+
+### 2. Profile without JWT
+GET {{baseUrl}}/api/auth/profile
+
+### 3. Dashboard with valid JWT
+GET {{baseUrl}}/api/auth/dashboard
+Authorization: Bearer {{accessToken}}
+
+### 4. Admin endpoint with employee JWT
+GET {{baseUrl}}/api/auth/admin
+Authorization: Bearer {{accessToken}}
+
+### 5. Profile with invalid JWT
+GET {{baseUrl}}/api/auth/profile
+Authorization: Bearer invalid.token.value
+
+
+
+
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2YWRjNWU1NTRjNGRlNDM3ZDUxMDU1YjciLCJqdGkiOiJjZjgxMTNlMS0xOWIyLTQzNWMtOGIxMC04YjA1OWM0ZjNjZjgiLCJmYW1pbHlJZCI6ImI3NzNjODMxLWNjZmQtNGIyMC05YTYxLWJhZTBmZjY3MDg3OCIsInRva2VuVHlwZSI6InJlZnJlc2giLCJpYXQiOjE3OTI4NDgzOTQsImV4cCI6MTc5MzQ1MzE5NCwiYXVkIjoiand0LWF1dGgtY2xpZW50IiwiaXNzIjoiand0LWF1dGgtYXBpIn0.suZK5-IjHxMuQWAr023aHp0Xmv9K59Qmg1HBVtrRU1M
+
+### 1. Refresh tokens
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### 2. Protected profile with new access token
+GET {{baseUrl}}/api/auth/profile
+Authorization: Bearer {{accessToken}}
+
+### 3. Logout
+POST {{baseUrl}}/api/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### 4. Try refreshing after logout
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
